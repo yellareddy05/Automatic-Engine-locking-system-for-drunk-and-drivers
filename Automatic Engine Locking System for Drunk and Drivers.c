@@ -1,3 +1,53 @@
+/*  AELDD
+ * 
+ * This sketch shows you  LCD using an 8051.
+ * 
+ * This sketch was written by Yella Reddy using information from the 
+ * 8051 datasheet and examples.
+ * 
+ * 
+ * Components
+ * ----------
+ *  - 8051
+ *  - LCD
+ *  - 10k Ohm pot
+ *  - MQ3 sensor
+ *  
+ *  IDE
+ *  ---
+ *  Keil IDE with 8051 Code 
+ *  https://github.com/yellareddy05/8051
+ *  
+ *  
+ *
+ * Connections
+ * -----------
+ *  
+ *        8051 Kit |     LCD
+ *  ------------------------------       
+ *         P2.0     |  RS
+ *         P2.1     |  RW
+ *         P2.2     |  E    
+ *     
+ *         P1.1     |  D0
+ *         P1.2     |  D1
+ *         P1.3     |  D2
+ *         P1.4     |  D3
+ *         P1.5     |  D4
+ *         P1.6     |  D5
+ *         P1.7     |  D7
+ *  Other information
+ *  -----------------
+ *  
+ *  1. 8051 Datasheet: https://www.keil.com/dd/docs/datashts/atmel/at89c51_ds.pdf
+ *  2. https://components101.com/sites/default/files/component_datasheet/16x2%20LCD%20Datasheet.pdf
+ *
+ *  Created on Nov 27 2020 by Yella Reddy
+ * 
+ */
+
+
+
 #include<reg52.h>
 #include<intrins.h>
 #define lcd P0
@@ -15,17 +65,71 @@ sbit CS  = P2^0;
 
 sbit mtr = P1^0;
 
+/**
+ * brief: initialize lcd
+ * params none:none
+ * retval: none
+ */
 void init_lcd(void);
+/**
+ * brief: command lcd
+ * params char:char
+ * retval: none
+ */
 void cmd_lcd(unsigned char);
+/**
+ * brief: data lcd
+ * params char:char
+ * retval: none
+ */
 void lcd_data(unsigned char);
+/**
+ * brief: display lcd
+ * params char *:char *
+ * retval: none
+ */
 void display_lcd(unsigned char *);
+/**
+ * brief: lcd_busy_check
+ * params none:none
+ * retval: none
+ */
 void LCD_Busy_Chk(void);
-
+/**
+ * brief: delay_ms
+ * params int:30
+ * retval: none
+ */
 void delay_ms(unsigned int);
+/**
+ * brief: integer_lcd
+ * params int:30
+ * retval: none
+ */
 void integer_lcd(int);
+/**
+ * brief: float_lcd
+ * params int:int n
+ * retval: none
+ */
 void float_lcd(float f);
+/**
+ * brief: adc_convert
+ * params none:void
+ * retval: float
+ */
 float adc_convert (void);
+/**
+ * brief: write_read
+ * params unsigned char:unsigned char
+ * retval: float
+ */
 unsigned char byte_write_read(unsigned char);
+/**
+ * brief: select_channel
+ * params none:none
+ * retval: none
+ */
 void select_channel(void);
 
 unsigned char channel,A,C;
